@@ -23,9 +23,9 @@
 
   <dt>Edit venue</dt>
   <dd>
-    <form action="/update_venue/<%= @the_venue.id %>">
-      <label for="browser_venue">Address</label>
-      <input id="browser_venue" type="text" name="query_address" value="<%= @the_venue.address %>" placeholder="Enter an address...">
+    <form method="post" action="/update_venue/<%= @the_venue.id %>">
+      <label for="browser_address">Address</label>
+      <input id="browser_address" type="text" name="query_address" value="<%= @the_venue.address %>" placeholder="Enter an address...">
       
       <label for="browser_name">Name</label>
       <input id="browser_name" type="text" name="query_name" value="<%= @the_venue.name %>" placeholder="Enter a name...">
@@ -39,7 +39,7 @@
 
   <dt>Delete venue</dt>
   <dd>
-    <a href="/delete_venue/<% @the_venue.id %>">
+    <a href="/delete_venue/<%= @the_venue.id %>">
       Delete this venue
     </a>
   </dd>
@@ -54,18 +54,18 @@
     <th>Posted</th>
   </tr>
 
-  <% @the_venue.comments.each do |comment| %>
+  <% @the_venue.comments.each do |a_comment| %>
   <tr>
     <td>
-      <%= comment.commenter.username %>
+      <%= a_comment.commenter.username %>
     </td>
 
     <td>
-      <%= comment.body %>
+      <%= a_comment.body %>
     </td>
 
     <td>
-      <%= comment.created_at %>
+      <%= a_comment.created_at %>
     </td>
   </tr>
   
@@ -74,7 +74,7 @@
 
 <h3>Add a new comment</h3>
 
-<form action="/insert_comment_record">
+<form method="post" action="/insert_comment_record">
   <label for="browser_venue_id">Venue ID</label>
   <input id="browser_venue_id" type="text" value="<%= @the_venue.id %>" name="query_venue_id">
 
